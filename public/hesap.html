@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="https://kit.fontawesome.com/7e73ae492b.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+  </head>
+  <body>
+    <style> 
+    body {
+        padding-left: 0px;
+padding-right: 15px;
+
+    
+    }
+        .float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	background-color:#2593d3;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+  z-index:100;
+}
+
+    </style>
+    <div class="container" >
+      <div class="row">
+        <div class="col-12 fixed-top" style="overflow: hidden ; background:white;">
+
+            <h1 style="margin-top: 15px ; text-align: center">Harcamanızı Giriniz <span><button type="button" class="btn btn-success float" id="refresh" style="margin-left:2px;" ><i class="fa-solid fa-arrows-rotate"></i></button>
+            </span></h1>
+<hr>    
+            <div class="input-group mb-3 ">
+                <input type="text" class="form-control" id="tip" placeholder="Açıklama" aria-label="Amount (to the nearest dollar)">
+                <span  style="width:20%;">
+                    
+                    <input type="number" class="form-control" id="gir" placeholder="Tutar" aria-label="Amount (to the nearest dollar)">
+
+                </span>
+                <span class="input-group-text" style="width:12%">TL</span>
+
+                <button type="button" class="btn btn-danger" style="margin-left:2px;" id="harcama">Harcama</button>
+
+              </div>
+              <div class="row">
+              <div class="col-6" style="border-right: 1px solid #e67e22;">
+                <h1 style="text-align:center; color:gray; font-size: medium;">Günlük Harcama<span> <h3 style="text-align: center; color: rgb(0, 0, 0);" id="gunluk">25</h3></span></h1>
+            </div>
+            
+            <div class="col-6">
+                <h1 style="text-align:center;color: gray;font-size: medium; ">Aylık Harcama <span> <h3 style="text-align: center; color: rgb(0, 0, 0);" id="aylik">25</h3></span></h1>
+            </div>
+          </div>
+    
+          <hr />
+        </div>
+        </div>
+      </div>
+      <hr />
+
+      <div class="row" style="margin-top: 52%;">
+        <div class="col-12 mt-3" >
+
+            <ul class="list-group list-group-numbered" id="liste">
+
+            </ul>
+        </div>
+      </div>
+          
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+</div>
+<div id="liveAlertPlaceholder"></div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+  apiKey: "AIzaSyDgzuRwTOJ1TSTYnNR02GCVt_-f0tIof6k",
+  authDomain: "hesap-85989.firebaseapp.com",
+  projectId: "hesap-85989",
+  storageBucket: "hesap-85989.appspot.com",
+  messagingSenderId: "789853114973",
+  appId: "1:789853114973:web:71d1ec2e95fa00d139f3b4"
+};
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+
+        import {
+            getFirestore , doc , getDoc , setDoc , collection , addDoc, updateDoc , deleteDoc, deleteField, query, where, getDocs, orderBy
+        }
+            from "https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js";
+
+            const db = getFirestore();
+            ////////////////////////////////////
+            let yenile = document.getElementById("refresh");
+            yenile.addEventListener("click",function(){
+                window.location.reload();
+            });
+                            const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+                            let liste = document.querySelector("#liste");
+                            let gunluk = document.querySelector("#gunluk");
+                            let aylik = document.querySelector("#aylik");
+                            let totalg = 0;
+                            let total = 0;
+                            var tarih = new Date();
+                            function clearalert() {
+                                alertPlaceholder.innerHTML = "";
+                            }
+                            const alerti = (message, type) => {
+                        const wrapper = document.createElement('div')
+                        wrapper.innerHTML = [
+                            `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+                            `   <div>${message}</div>`,
+                            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                            '</div>'
+                        ].join('')
+
+                        alertPlaceholder.append(wrapper)
+                        }
+
+                document.getElementById("harcama").addEventListener("click",harcar)
+
+                let harcamaGun = tarih.getTime()
+                harcamaGun = harcamaGun.toString()
+                async function harcar() {
+                    liste.innerHTML = "";
+
+
+                    var ref = doc(db, "harcama", tarih.toString());
+                    if(document.getElementById("tip").value == ""){
+                        alerti("Açıklama girmeniz gerekir.","danger");
+                        const myTimeout = setTimeout(clearalert, 5000);
+                        return;
+                    }
+                    else if(document.getElementById("gir").value == ""){
+                        alerti("Tutar girmeniz gerekir.","danger");
+                        const myTimeout = setTimeout(clearalert, 5000);
+                        return;
+                    }
+
+                    else{
+                       
+                    
+                    const docRef = await setDoc(
+                        ref, {
+                            Tutar: document.getElementById("gir").value,
+                            Tarih: tarih.toLocaleDateString(),
+                            Tip: document.getElementById("tip").value
+                        }
+                    )
+                    .then(() =>{
+                        alerti("Başarıyla kaydedildi","success");
+                        const myTimeout = setTimeout(clearalert, 5000);
+                        trigger(querySnapshot)
+
+                    })
+                    .catch((error)=>{
+                        alert("Hata"+ error)
+                    })
+                }
+
+
+
+            }
+
+
+
+
+
+
+
+
+            async function GetDocument(){
+                var ref = doc(db, "harcama");
+                
+                const docSnap = await getDoc(ref);
+
+                if(docSnap.exists()){
+                    Namebox.value = docSnap.data().NameOfStd;
+                    Rollbox.value = docSnap.data().RollNo
+                    Secbox.value = docSnap.data().Section
+                    Genbox.value = docSnap.data().Gender
+                }
+                
+                else{
+                    alert("Böyle bir şey yok")
+                }
+            }
+            ///////////////////////////////////////////
+            async function UpdateFieldsInDoc(){
+                var ref = doc(db, "TheStudentList", Rollbox.value);
+
+                     await updateDoc(
+                        ref, {
+                        NameOfStd: Namebox.value,
+                        Section: Secbox.value,
+                        Gender: Genbox.value
+                    }
+                )
+                .then(() =>{
+                    alert("Güncellendi")
+                })
+                .catch((error)=>{
+                    alert("Hata"+ error)
+                })
+            }
+
+            ///////////////////////////////////////////
+            async function DeleteDoc(){
+                var ref = doc(db, "TheStudentList", Rollbox.value);
+
+                const docSnap = await getDoc(ref);
+
+                if(!docSnap.exists()){
+                    alert("Böyle bir şey yok")
+                }
+
+                await deleteDoc(ref).then(()=>{
+                    alert("Silindi.")
+                })
+                }
+               
+            // //////////////////////////////////////                
+            // Insbtn.addEventListener("click", AddDocument_CustomID)
+            // Selbtn.addEventListener("click", GetDocument)
+            // Upbtn.addEventListener("click",UpdateFieldsInDoc)
+            // Delbtn.addEventListener("click",DeleteDoc)
+            // list.addEventListener("click",listesi)
+
+
+
+            const querySnapshot = await getDocs(collection(db,"harcama"));
+
+
+            function trigger(querySnapshot) {
+
+                
+               querySnapshot.forEach((doc) => {
+                let creator=document.createElement("li");
+                creator.setAttribute("class","list-group-item d-flex justify-content-between align-items-start");
+                creator.innerHTML= `<div class='ms-2 me-auto text-secondary' style='font-size:10px'> <div class='fw-bold text-dark'style='font-size:18px'>` + doc.data().Tip + `</div>
+                    ` + doc.data().Tarih + `</div>
+                    <span class='badge bg-success rounded-pill'>` + doc.data().Tutar + ` ₺</span>`;
+                    
+
+                liste.prepend(creator);
+
+                // liste.innerHtml += `<li class="list-group-item d-flex justify-content-between align-items-start">
+                //   <div class="ms-2 me-auto">
+                //     <div class="fw-bold">`+doc.data().Tip+`</div>
+                //     `+doc.data().Tarih+`</div>
+                //   <span class="badge bg-primary rounded-pill">`+doc.data().Tutar+`</span>
+                // </li>`;
+
+
+            console.log(doc.id, " => ", doc.data().Tutar);
+
+                guncelle(doc)
+            }); 
+            
+        } 
+            
+
+
+        trigger(querySnapshot)
+
+            function guncelle(doc) {
+                total += parseInt(doc.data().Tutar)
+
+
+                if(doc.data().Tarih == tarih.toLocaleDateString()){
+                    totalg += parseInt(doc.data().Tutar)
+                }
+                aylik.innerHTML = total + "<span>₺</span>";
+                gunluk.innerHTML = totalg + "<span>₺</span>";
+            }
+
+
+
+
+
+
+      </script>
+  </body>
+</html>

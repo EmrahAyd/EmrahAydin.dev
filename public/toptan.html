@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="tr">
+  <!-- head -->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stil.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image carousel 2.0</title>
+    <script src="https://kit.fontawesome.com/3569aa9baa.js" crossorigin="anonymous"></script>
+
+
+ <!-- NavBAR -->
+    <nav class="navbar navbar-expand-lg bg-light" style="z-index: 900; padding-top: 50px;">
+      <div class="container-fluid" style="margin-left: 10%; margin-right: 10%;" >
+        <a class="navbar-brand" href="/toptan.html" translate="no"><strong>J</strong>anes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active cev1" aria-current="page" href="/toptan.html">Anasayfa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link cev2" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle cev3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dil Ayarı <i class="fas fa-language"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><hr class="dropdown-divider"></li>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                  function googleTranslateElementInit() {
+                  new google.translate.TranslateElement(
+                  {pageLanguage: 'tr', includedLanguages: 'en,ar,ru,tr'},
+                  'google_translate_element'
+                  );
+                  }
+                  </script>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active cev3" href="/urunler.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kategoriler </i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="/urunler.html" id="elbis" onclick="elbise('Elbise')">Elbiseler</a></li>
+                <li><a class="dropdown-item" href="/urunler.html" id="arabi" onclick="elbise('Bluz')"> Bluzlar</a></li>
+                <li><a class="dropdown-item" href="/urunler.html" id="eng"  onclick="elbise('Takım')">Takım</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/urunler.html" onclick="alli()">Hepsini göster </a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input id="serb" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success cev5" type="submit">Ara</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- NavBAR -->
+
+
+  </head>
+
+  <!-- head -->
+
+  <!-- body -->
+  <body>
+
+
+
+<div class="container">
+
+        <div class="row" id="bir1">
+          <!-- carasuel -->
+          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+
+            <div class="carousel-indicators">
+              
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <a href="/urunler.html" style=" text-decoration: none; color:black ">
+                <div style="position: relative; display: inline-block;">
+                  <img src="/b.png" class="d-block w-100" style="display: block;" alt="...">
+                  <div style="position: absolute; top: 80%; left: 50%; transform: translate( -50%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold;">
+                    <h3 class="cev6" style="color: rgb(255, 255, 255); border-radius: 25px;"> En Trend En Şık  </h3>
+                     <h4 class="cev7" style="font-size: 20px; background-color: #0a0a0a6e; border-radius: 25px;"> <a href="" style=" color: rgb(255, 255, 255); text-decoration: none; "> İncele </a></h4>
+                    </div>
+                  </a>
+                   </div>
+              </div>
+              <div class="carousel-item">
+                <a href="/urunler.html" style=" text-decoration: none; color:black ">
+                <div style="position: relative; display: inline-block;">
+                  <img src="/a.png" class="d-block w-100" style="display: block;" alt="...">
+                  <div style="position: absolute; top: 80%; left: 50%; transform: translate( -50%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold;">
+                    <h3 class="cev10" style=""> Tarzına Işık Tut. </h3>
+                     <h4 class="cev11" style="font-size: 20px; background-color: rgba(255, 255, 255, 0.849); border-radius: 25px;"><a href="" style="text-decoration:none; color:rgb(0, 0, 0)"> İncele</a></h4>
+                    </div>
+                  </a>
+                   </div>
+
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+          <!-- carasuel -->
+
+          <!-- index -->
+
+        <div class="row" style="margin-top: 20px;">
+
+          <div class="col-sm-6">
+
+            <div style="position: relative; display: inline-block;">
+             <img src="/2.jpg" class="d-block w-100" style="display: block;" alt="...">
+             <div style="position: absolute; top: 50%; left: 15%; transform: translate( -40%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold;">
+               <a href="/urunler.html" style=" text-decoration: none; color:black "><h3 class="cev12" style=" text-decoration: none;	border-top: 2px solid #484143; border-right: 2px dashed #484143; border-bottom: 2px dashed #484143; border-left: 2px solid #484143;;"> Hemen AL  </h3>
+                <h4 class="cev13" style="font-size: 20px;">moda elbiseler</h4></a>
+               </div>
+              </div>
+            </div>
+
+
+            <div class="col-sm-6">
+
+              <div style="position: relative; display: inline-block;">
+               <img src="/3.jpg" class="d-block w-100" style="display: block;" alt="...">
+               <div style="position: absolute; top: 50%; left: 15%; transform: translate( -40%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold;">
+                <a href="/urunler.html" style=" text-decoration: none; color:black "><h3 class="cev14"  style="border-radius: 47px 45px 45px 45px; -webkit-border-radius: 47px 45px 45px 45px; -moz-border-radius: 47px 45px 45px 45px; border: 2px solid #ff1e00;"> Hemen AL </h3>
+                  <h4 class="cev15" style="font-size: 20px;">moda elbiseler</h4></a>
+                 </div>
+                </div>
+              </div>
+
+
+        
+        <div class="col-sm-6">
+
+          <div style="position: relative; display: inline-block;">
+           <img src="/3.jpg" class="d-block w-100" style="display: block;" alt="...">
+           <div style="position: absolute; top: 50%; left: 15%; transform: translate( -40%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold;">
+             <h3 class="cev14"  style="border-radius: 47px 45px 45px 45px; -webkit-border-radius: 47px 45px 45px 45px; -moz-border-radius: 47px 45px 45px 45px; border: 2px solid #ff1e00;"> Hemen AL </h3>
+              <h4 class="cev15" style="font-size: 20px;">moda elbiseler</h4>
+             </div>
+            </div>
+          </div>
+
+
+    <div class="col-sm-6">
+      <div style="position: relative; display: inline-block;">
+       <img src="/3.jpg" class="d-block w-100" style="display: block;" alt="...">
+       <div style="position: absolute; top: 50%; left: 15%; transform: translate( -40%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold;">
+         <h3 class="cev14"  style="border-radius: 47px 45px 45px 45px; -webkit-border-radius: 47px 45px 45px 45px; -moz-border-radius: 47px 45px 45px 45px; border: 2px solid #ff1e00;"> Hemen AL </h3>
+          <h4 class="cev15" style="font-size: 20px;">moda elbiseler</h4>
+         </div>
+        </div>
+      </div>
+
+
+        <!-- slides -->
+        <div class="row">
+           <div class="slider-container">
+        <div class="left-slides">
+            <div style="background-color: #353b48;">
+                <h3 class="cev16">T-shirt</h3>
+                <p class="cev17">sezon modası</p>
+            </div>
+
+            <div style="background-color: #be2edd;">
+                <h3 class="cev18">Elbise</h3>
+                <p class="cev19">rengarek</p>
+            </div>
+
+            <div style="background-color: #4bcffa;">
+                <h3 class="cev20">Takım</h3>
+                <p class="cev21">kombin</p>
+            </div>
+
+            <div style="background-color: #218c74;">
+                <h3 class="cev22">Bluz</h3>
+                <p class="cev23">rahatlık</p>
+            </div>
+
+            <div style="background-color: #ff7f50;">
+                <h3 class="cev24">Abiye</h3>
+                <p class="cev25">Sunset at Clingmans Dome.</p>
+            </div>
+        </div>
+
+        <div class="right-slides">
+            <div style="background-image: url('https://modayakamoz.com/orj/6f7f89f7541d8854e4fa1ef07bcf7be6.jpg');">
+            </div>
+
+            <div style="background-image: url('https://modayakamoz.com/orj/d937fb7a3c54eaedfcbc457dbefc219f.jpg');">
+            </div>
+
+            <div style="background-image: url('https://modayakamoz.com/orj/31668-2022-05-19-10-16-19.jpeg');">
+            </div>
+
+            <div style="background-image: url('https://modayakamoz.com/orj/e7369af3251225c00da4694c6b4f65d2.jpg');">
+            </div>
+
+            <div style="background-image: url('https://modayakamoz.com/orj/88334b948c539797e2332527f506430f.jpeg');">
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="left-btn">
+                <i class="fas fa-arrow-down"></i>
+            </button>
+            <button class="right-btn">
+                <i class="fas fa-arrow-up"></i>
+            </button>
+        </div>
+    </div>
+  </div>
+
+
+    <!-- slides script -->
+          <script>
+            
+            const leftSlide = document.querySelector(".left-slides");
+                                  const slidesLength = leftSlide.querySelectorAll("div").length; 
+                              const rightSlide = document.querySelector(".right-slides");
+                              const leftBtn = document.querySelector(".left-btn");
+                              const rightBtn = document.querySelector(".right-btn");
+
+
+                              let currentSlide = 0;
+
+                              rightSlide.style.transform = `translateY(-${(slidesLength - 1) * 100}%)`;
+
+                              leftBtn.addEventListener("click", () => changeSlide("left"));
+                              rightBtn.addEventListener("click", () => changeSlide("right"));
+
+                              function changeSlide(btn) {
+                                if (btn == "right") {
+                                  currentSlide++;
+
+                                  if (currentSlide > slidesLength - 1) {
+                                    currentSlide = 0;
+                                  }
+                                } else if (btn == "left") {
+                                  currentSlide--;
+
+                                  if (currentSlide < 0) {
+                                    currentSlide = slidesLength - 1;
+                                  }
+                                }
+
+                                rightSlide.style.transform = `translateY(-${
+                                  (slidesLength - 1 - currentSlide) * 100
+                                }%)`;
+                                leftSlide.style.transform = `translateY(-${currentSlide * 100}%)`;
+                              }
+
+                              setInterval(autoChangeSlide, 3000);
+
+                              function autoChangeSlide() {
+
+                                currentSlide++;
+
+                                if (currentSlide > slidesLength - 1) {
+                                  currentSlide = 0;
+                                }
+
+                                rightSlide.style.transform = `translateY(-${
+                                  (slidesLength - 1 - currentSlide) * 100
+                                }%)`;
+                                leftSlide.style.transform = `translateY(-${currentSlide * 100}%)`;
+                              }
+          </script>
+          <!-- slide -->
+  </div>
+  </div>
+</div>
+
+      <!-- footer -->
+<footer class="site-footer" >
+  <div class="container" >
+    <div class="row">
+      <div class="col-sm-12 col-md-6">
+        <h6 class="cev26" >Hakkımızda</h6>
+        <p class="text-justify cev27">ABD, Avrupa veya diğer 100'den fazla ülkede En Ucuz ve En Son Moda Kadın Giyim ürünlerini çevrimiçi toptan satış yapmak ister misiniz? İster bir butik mağaza, ister çevrimiçi perakendeci olun, klasikten modayı takip eden tarzlara, resmi işlerden gündelik tarzlara, Janes'de 50.000'den fazla benzersiz ve modaya uygun bayan giyim tarzı, toplu satın alma için ilk tercihiniz olacak! En iyi satıcı olarak, her mevsime veya duruma uygun en yeni şık kadın kıyafetlerini toptan satışa sunuyoruz. Yaza gelindiğinde kadın giyim pazarında en çok ne konuşuluyor? Seksi Mayo vazgeçilmezdir. Klasik Tek Parçalar veya Örtüler, Bikiniler, hatta Büyük Beden Mayoların tümü web sitelerimizde mevcuttur. Plaj Giysileri ve Mayoların tüm günlük güncellemeleri, trend stilleri, renkleri ve boyutları işletmenizi tatmin edecek. Çiçek Desenli Elbise veya Gömlek Elbise de yaz tutkusuna çok yakışıyor. Müşterinizin özel bir etkinliğe katılması gerekiyorsa, ona zarif bir Abiye veya şık bir Parti Elbisesi sunun. Bunun yanı sıra gündelik kadın giyimi de oldukça popülerdir. Hem Kabarık Kol Bayan Üstler, İş Butik Bluzlar, Baskı T-shirt, hem de Şeffaf Kumaş Bayan Spor Sütyen veya Şortlar, Janes'de en son stilleri toptan tek elden yapabilirsiniz.</p>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6 class="cev28">Kategoriler</h6>
+        <ul class="footer-links">
+          <li><a href="/toptan.html" class="cev29">Bluz</a></li>
+          <li><a href="/toptan.html" class="cev30">Pantalon</a></li>
+          <li><a href="/toptan.html" class="cev31">Elbise</a></li>
+          <li><a href="/toptan.html" class="cev32">Takım</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-xs-6 col-md-3">
+        <h6 class="cev33">Bağlantılar</h6>
+        <ul class="footer-links">
+          <li><a href="https://modayakamoz.net/">ModaYakamoz</a></li>
+          <li><a href="https://www.viyamo.com/">Viyamo</a></li>
+          <li><a href="https://www.modablask.com/">ModaBlask</a></li>
+
+        </ul>
+      </div>
+    </div>
+    <hr>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-6 col-xs-12">
+        <p class="copyright-text" translate="no">Copyright &copy; 2022 All Rights Reserved by 
+    <a href="#" translate="no">Janes</a>.
+        </p>
+      </div>
+
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <ul class="social-icons">
+          <li><a class="facebook" href="https://www.facebook.com/janestoptan"><i class="fa fa-facebook"></i></a></li>
+          <li><a class="twitter" href="https://www.instagram.com/janescollectionn/"><i class="fa fa-instagram"></i></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">
+  (function () {
+      var options = {
+          whatsapp: "905525225723",
+          call_to_action: "Merhaba, nasıl yardımcı olabilirim?",
+          position: "right",
+      };
+      var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+      var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+      s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+      var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+  })();
+</script>
+<script src="app.js"></script>
+    <!-- <script src="https:cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+  </body>
+
+     
+</html>

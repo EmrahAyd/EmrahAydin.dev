@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stil.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image carousel 2.0</title>
+    <script src="https://kit.fontawesome.com/3569aa9baa.js" crossorigin="anonymous"></script>
+
+
+    <nav class="navbar navbar-expand-lg bg-light" style="z-index: 900; padding-top: 50px;">
+      <div class="container-fluid" style="margin-left: 10%; margin-right: 10%;" >
+        <a class="navbar-brand" href="#" translate="no"><strong>J</strong>anes</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active cev1" aria-current="page" href="/index.html">Anasayfa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link cev2" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle cev3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Dil Ayarı <i class="fas fa-language"></i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><hr class="dropdown-divider"></li>
+                <div id="google_translate_element"></div>
+                <script type="text/javascript">
+                  function googleTranslateElementInit() {
+                  new google.translate.TranslateElement(
+                  {pageLanguage: 'tr', includedLanguages: 'en,ar,ru,tr'},
+                  'google_translate_element'
+                  );
+                  }
+                  </script>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle active cev3" href="/urunler.html" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Kategoriler </i>
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" id="elbis" onclick="elbise('Elbise')">Elbiseler</a></li>
+                <li><a class="dropdown-item" id="arabi" onclick="elbise('Bluz')"> Bluzlar</a></li>
+                <li><a class="dropdown-item"  id="eng"  onclick="elbise('Tulum')">Tulum</a></li>
+                <li><a class="dropdown-item"  id="eng"  onclick="elbise('Tayt')">Tayt</a></li>
+                <li><a class="dropdown-item"  id="eng"  onclick="elbise('Gömlek')">Gömlek</a></li>
+
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" onclick="elbise('all')">Hepsini göster </a></li>
+              </ul>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input id="serb" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success cev5" type="submit">Ara</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    
+    <link href="https:cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="col-sm-1 kate" >
+        <div style="position: fixed; top: 50%; left: 7%; transform: translate( -50%, -50% );text-align: center;color: rgb(10, 10, 10);font-weight: bold; font-size: larger"> Kategoriler <br>
+        <button type="button" class="btn  btn-lg  mt-2" onclick="elbise('all')">Tümünü Gör</button> <br>
+        <button type="button" class="btn  btn-lg  mt-2" onclick="elbise('Elbise')">Elbiseler</button> <br>
+        <button type="button" class="btn btn-lg text-center mt-2" onclick="elbise('Bluz')">Bluzler</button> <br>
+        <button type="button" class="btn btn-lg text-center mt-2" onclick="elbise('Tayt')">Tayt</button> <br>
+        <!-- <button type="button" class="btn btn-lg text-center mt-2" onclick="elbise('Takım')">Takım</button> <br> -->
+        <button type="button" class="btn btn-lg text-center mt-2" onclick="elbise('Gömlek')">Gömlek</button> <br>
+
+      </div>
+      </div>    
+    </div>
+    <div class="row"  style="padding-top: 30px !important;">
+    </div>
+<div class="container mt-5  ">
+
+  <div class="row kategoris" >
+
+</div>  
+</div>     
+
+      <script>
+           productsList = [{UrunKodu: '32218', UrunAdi : 'Omuz Ve Yaka Dantel Detaylı Janes Viskon Kumaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/19968a14a194f016b78db4105ffdb7d6.jpeg', Fiyat: 109.90},
+{UrunKodu: '32131', UrunAdi : 'Kruvaze Yaka Kuşak Ve Toka Detay Krep Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31131-2022-04-27-06-02-58.jpeg', Fiyat: 199.90},
+{UrunKodu: '32128', UrunAdi : 'Kruvaze Yaka Kuşak Ve Toka Detay Krep Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31128-2022-04-27-06-00-19.jpeg', Fiyat: 199.90},
+{UrunKodu: '31843', UrunAdi : 'Zincir Askılı Yaka Fermuar Detay Viskon Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/30843-2022-04-20-08-38-25.jpeg', Fiyat: 119.90},
+{UrunKodu: '31779', UrunAdi : 'Etnik Desen Dokuma Viskon Salaş Ceket', Kategori: 'Ceket', Resim: 'https://www.modayakamoz.com/orj/67ecf24ea8f815fb0ecee92da0b5f5da.jpg', Fiyat: 119.90},
+{UrunKodu: '31657', UrunAdi : 'Tek Omuz Açık Viskon Mini Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30657-2022-04-16-08-08-53.jpeg', Fiyat: 159.90},
+{UrunKodu: '31588', UrunAdi : 'Fırfır Detay Kuşaklı Janes Aerobin Kumaş Elbise 88cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/12e245cf4ffb7ad08c3b4472adb7424c.jpeg', Fiyat: 169.90},
+{UrunKodu: '31266', UrunAdi : 'Askı Bağlamalı Sandy Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/30266-2022-04-08-07-02-40.jpeg', Fiyat: 99.90},
+{UrunKodu: '31265', UrunAdi : 'Askı Bağlamalı Sandy Bluz', Kategori: 'T-shirt', Resim: 'https://www.modayakamoz.com/orj/30265-2022-04-08-07-01-46.jpeg', Fiyat: 99.90},
+{UrunKodu: '30987', UrunAdi : 'Gipeli Askılı Kat Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/a7fc9d7b0c52aed2aefd0dd20c7d46f8.jpg', Fiyat: 119.90},
+{UrunKodu: '30877', UrunAdi : 'Pileli Tam Boy Süprem Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29877-2022-03-30-06-34-37.jpeg', Fiyat: 189.90},
+{UrunKodu: '30876', UrunAdi : 'Pileli Tam Boy Süprem Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29876-2022-03-30-06-33-13.jpeg', Fiyat: 189.90},
+{UrunKodu: '30628', UrunAdi : 'Etnik Desen Kemer Detaylı Dokuma Viskon Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29628-2022-03-23-11-05-07.jpeg', Fiyat: 319.90},
+{UrunKodu: '29947', UrunAdi : 'Leopar Desen Kruvaze Yaka Elbise (kemer Dahil)', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/6bc8b5f03d6c355e327d5f8daa617c98.jfif', Fiyat: 159.90},
+{UrunKodu: '29592', UrunAdi : 'Kol Yırtmaç Detay Janes Viskon Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/28592-2022-02-16-07-59-11.jpeg', Fiyat: 139.90},
+{UrunKodu: '29176', UrunAdi : 'Dalgıç Kumaş Kemerli Elbise.', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/e40946fe02a793e7f8229c705093efa8.png', Fiyat: 229.90},
+{UrunKodu: '29175', UrunAdi : 'Dalgıç Kumaş Kemerli Elbise.', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/7b7c7ce8087fc5de2396ed67de76f9fe.jpg', Fiyat: 229.90},
+{UrunKodu: '29172', UrunAdi : 'Dalgıç Kumaş Kemerli Elbise.', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/18b12a1e2b8f16032010db9fd46f8a48.jpg', Fiyat: 229.90},
+{UrunKodu: '26059', UrunAdi : 'Krep Kumaş Midi Boy Kuşaklı Uzunkol Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/25059-2021-10-25-23-33-32.jpeg', Fiyat: 199.90},
+{UrunKodu: '26058', UrunAdi : 'Krep Kumaş Midi Boy Kuşaklı Uzunkol Elbise 113 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/25058-2021-10-25-23-34-54.jpeg', Fiyat: 199.90},
+{UrunKodu: '26057', UrunAdi : 'Krep Kumaş Midi Boy Kuşaklı Uzunkol Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/25057-2021-10-25-23-33-59.jpeg', Fiyat: 199.90},
+{UrunKodu: '26056', UrunAdi : 'Krep Kumaş Midi Boy Kuşaklı Uzunkol Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/25056-2021-10-25-23-34-22.jpeg', Fiyat: 199.90},
+{UrunKodu: '25401', UrunAdi : 'Midi Boy Kuşaklı Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24401-2022-04-26-20-04-20.jpeg', Fiyat: 179.90},
+{UrunKodu: '25400', UrunAdi : 'Midi Boy Kuşaklı Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24400-2021-12-24-12-49-49.jpeg', Fiyat: 179.90},
+{UrunKodu: '25399', UrunAdi : 'Midi Boy Kuşaklı Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24399-2021-12-24-12-45-37.jpeg', Fiyat: 179.90},
+{UrunKodu: '25398', UrunAdi : 'Midi Boy Kuşaklı Elbise 120cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24398-2021-12-24-12-43-46.jpeg', Fiyat: 179.90},
+{UrunKodu: '25162', UrunAdi : 'Midi Boy Kuşaklı Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24162-2022-01-28-09-34-41.jpeg', Fiyat: 179.90},
+{UrunKodu: '24248', UrunAdi : 'Yüksek Bel Düğme Ve Yırtık Detaylı Kot Pantolon Jean 92cm', Kategori: 'Gömlek', Resim: 'https://www.modayakamoz.com/orj/3f5fce2e7fee6e5f287216e414ecc14e.jpg', Fiyat: 199.90},
+{UrunKodu: '32717', UrunAdi : 'Simli V Yaka Krep Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31717-2022-05-21-10-48-32.jpeg', Fiyat: 129.90},
+{UrunKodu: '32638', UrunAdi : 'Dantel Omuz Baskılı Dantel Detay Viskon Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/31638-2022-05-19-08-38-23.jpeg', Fiyat: 159.90},
+{UrunKodu: '32493', UrunAdi : 'Geometrik Desenli Moskrep Gömlek', Kategori: 'Gömlek', Resim: 'https://www.modayakamoz.com/orj/249c30caaf8c20c503eb39eaab71c910.jpeg', Fiyat: 199.90},
+{UrunKodu: '32321', UrunAdi : 'Scuba Kumaş Önü Fırfırlı Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/8eb42e690d3c00df2bb4320adf83e735.jpeg', Fiyat: 229.90},
+{UrunKodu: '32263', UrunAdi : 'Leopar Desen Viskon Tam Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31263-2022-05-03-12-15-44.jpeg', Fiyat: 209.90},
+{UrunKodu: '31974', UrunAdi : 'Çiçek Baskılı Toka Detaylı Sandy Kumaş Salaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/56b6d9ccc7aab78ceb20c77437deb040.jpg', Fiyat: 179.90},
+{UrunKodu: '31958', UrunAdi : 'Askılı Gül Baskı Viskon Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30958-2022-04-23-06-08-20.jpeg', Fiyat: 119.90},
+{UrunKodu: '31587', UrunAdi : 'Fırfır Detay Kuşaklı Janes Aerobin Kumaş Elbise88 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/e4e670b2f4d926008fd6a030ad6dc5d8.jpeg', Fiyat: 169.90},
+{UrunKodu: '31586', UrunAdi : 'Fırfır Detay Kuşaklı Janes Aerobin Kumaş Elbise88 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/0b1df8549b3d5d5f32d545145ad3b160.jpeg', Fiyat: 169.90},
+{UrunKodu: '31538', UrunAdi : 'Sırtı çapraz Janes Viskon Elbise 115cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/c316d122687e980e0a956a31c4193652.jpeg', Fiyat: 169.90},
+{UrunKodu: '31424', UrunAdi : 'Scuba Kumaş Önü Fırfırlı Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30424-2022-05-06-08-03-00.jpeg', Fiyat: 229.90},
+{UrunKodu: '31423', UrunAdi : 'Scuba Kumaş Önü Fırfırlı Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30423-2022-05-06-15-14-51.jpeg', Fiyat: 229.90},
+{UrunKodu: '31421', UrunAdi : '3Scuba Kumaş Önü Fırfırlı Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/84e3be9becc485e9398efb10f9bfc2bf.jpg', Fiyat: 229.90},
+{UrunKodu: '31420', UrunAdi : 'Scuba Kumaş Önü Fırfırlı Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30420-2022-05-06-08-03-30.jpeg', Fiyat: 229.90},
+{UrunKodu: '31270', UrunAdi : 'Ribana Şeritli Yaka Sandy Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30270-2022-04-08-07-12-58.jpeg', Fiyat: 139.90},
+{UrunKodu: '31174', UrunAdi : 'Yeni Sezon Gipe Detaylı Askılı Uzun Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30174-2022-04-06-08-32-21.jpeg', Fiyat: 119.90},
+{UrunKodu: '31161', UrunAdi : 'Nakış Detay Dokuma Viskon Kumaş Tulum', Kategori: 'Tulum', Resim: 'https://www.modayakamoz.com/orj/30161-2022-04-05-13-32-56.jpeg', Fiyat: 219.90},
+{UrunKodu: '30965', UrunAdi : 'Şerit Tül Detay Sandy Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29965-2022-04-01-12-47-27.jpeg', Fiyat: 129.90},
+{UrunKodu: '30870', UrunAdi : 'Zebra Desen Ispanyol Paça Tayt Pantolon', Kategori: 'Tayt', Resim: 'https://www.modayakamoz.com/orj/77b76b098bd7d13bcde0d1b6c425e914.jpg', Fiyat: 99.90},
+{UrunKodu: '30484', UrunAdi : 'Astar Sandy, Dışı Tül çiçek Desenli Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29484-2022-03-18-14-52-28.jpeg', Fiyat: 399.90},
+{UrunKodu: '30106', UrunAdi : 'Simli Askı Detay Etek Ucu Güpürlü Sandy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29106-2022-03-04-08-38-44.jpeg', Fiyat: 149.90},
+{UrunKodu: '28035', UrunAdi : 'Krep Kumaş Kol Tül Puan Detaylı Kuşaklı Tulum 133 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/915aaf0ef03579e3378d64f326772fef.jpg', Fiyat: 199.90},
+{UrunKodu: '26531', UrunAdi : 'Kolu Tüllü V Yaka Janes Sandy Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/25531-2021-10-14-08-00-03.jpeg', Fiyat: 119.90},
+{UrunKodu: '25259', UrunAdi : 'Kırmızı Çiçek Desen Alt Krep Üst Viskon Kumaş Uzun Kollu Elbise 133 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24259-2021-07-08-07-10-27.jpeg', Fiyat: 169.90},
+{UrunKodu: '32517', UrunAdi : 'Şerit Tül Detay Sandy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31517-2022-05-15-13-36-40.jpeg', Fiyat: 119.90},
+{UrunKodu: '32445', UrunAdi : 'Dantel Detay Viskon Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31445-2022-05-13-07-26-28.jpeg', Fiyat: 169.90},
+{UrunKodu: '32370', UrunAdi : 'Leopar Desenli Mikro Kumaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/11bc88670ee60c1e82e64a8fb9ce3fe1.jpg', Fiyat: 109.90},
+{UrunKodu: '32264', UrunAdi : 'Puantiyeli örme Krep Tam Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31264-2022-05-03-12-17-48.jpeg', Fiyat: 249.90},
+{UrunKodu: '32197', UrunAdi : 'Yıldız Desen Rahat Kesim Krep Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31197-2022-04-29-10-39-58.jpeg', Fiyat: 179.90},
+{UrunKodu: '32129', UrunAdi : 'Kruvaze Yaka Kuşak Ve Toka Detay Krep Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31129-2022-04-27-06-01-08.jpeg', Fiyat: 199.90},
+{UrunKodu: '32127', UrunAdi : 'Kolları Tül Yarım Kol Sandy Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31127-2022-04-27-05-53-58.jpeg', Fiyat: 169.90},
+{UrunKodu: '31965', UrunAdi : 'Crep Kumaş Likralı Tam Boy Yazlık Elbise135 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/80826e17eaaec18383224742a2d6f00d.jpeg', Fiyat: 159.90},
+{UrunKodu: '31673', UrunAdi : 'Tam Boy Puantiyeli Janes Crep Kumaş Elbise135 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/7d1c23b3b70091375f8e884f81d556d6.png', Fiyat: 1159.90},
+{UrunKodu: '31419', UrunAdi : 'Scuba Kumaş Önü Fırfırlı Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30419-2022-05-23-20-18-53.jpeg', Fiyat: 229.90},
+{UrunKodu: '31180', UrunAdi : 'Üst Viskon Alt Astarlı Şifon Beli Lastikli Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30180-2022-04-06-08-00-52.jpeg', Fiyat: 229.90},
+{UrunKodu: '31120', UrunAdi : 'Sırt Kelebek Lazer Kesimli Viskon Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30120-2022-04-04-17-28-22.jpeg', Fiyat: 159.90},
+{UrunKodu: '31012', UrunAdi : 'Toka Detaylı Sandy Salaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/1770262a869ad1993a03218481c94800.jpg', Fiyat: 159.90},
+{UrunKodu: '30938', UrunAdi : 'Kol Detay Piliseli Kemer Dahil Krep Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29938-2022-04-01-07-15-12.jpeg', Fiyat: 189.90},
+{UrunKodu: '30931', UrunAdi : 'Leopar Desen Bol Paça Beli Kuşaklı Kruvaze Tulum', Kategori: 'Tulum', Resim: 'https://www.modayakamoz.com/orj/29931-2022-04-01-10-06-37.jpeg', Fiyat: 149.90},
+{UrunKodu: '30930', UrunAdi : 'Puantiyeli Bol Paça Beli Kuşaklı Kruvaze Tulum', Kategori: 'Tulum', Resim: 'https://www.modayakamoz.com/orj/29930-2022-04-01-10-07-59.jpeg', Fiyat: 149.90},
+{UrunKodu: '30486', UrunAdi : 'Dantel Detay Krep Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29486-2022-03-18-15-50-26.jpeg', Fiyat: 140.00},
+{UrunKodu: '30480', UrunAdi : 'İç Astarlı Fisto Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/51079bccc7b4431d23a0840e5c3836ff.jpg', Fiyat: 189.90},
+{UrunKodu: '30371', UrunAdi : 'Fermuar Detay çıpa Baskılı Zincir Askılı Iki Iplik Elbise 86sm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/29371-2022-03-13-17-33-31.jpeg', Fiyat: 159.90},
+{UrunKodu: '29602', UrunAdi : 'Çizgi Desenli Kedi Baskılı Pantolon', Kategori: 'Pantolon', Resim: 'https://www.modayakamoz.com/orj/ce631df553c898ecea9248307002eae7.jpg', Fiyat: 169.90},
+{UrunKodu: '25722', UrunAdi : 'Krep Kumaş Uzun Kollu Tam Boy Puantiyeli Elbise 132 Cm', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/24722-2021-09-15-08-55-19.jpeg', Fiyat: 149.90},
+{UrunKodu: '24442', UrunAdi : 'Tam Boy Puantiyeli Janes Viskon Kumaş Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/23442-2021-06-08-07-09-24.jpeg', Fiyat: 159.90},
+{UrunKodu: '22294', UrunAdi : 'Atlet Dahil Janes Aerobin Kumaş Tulum 140cm', Kategori: 'Gömlek', Resim: 'https://www.modayakamoz.com/orj/bd604eb12ba935c9f57ab3a64e72d030.png', Fiyat: 219.90},
+{UrunKodu: '32309', UrunAdi : 'Askılı Beyaz şerit Detay V Yaka Viskon Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/31309-2022-05-06-09-05-19.jpeg', Fiyat: 119.90},
+{UrunKodu: '31639', UrunAdi : 'Geometrik Desen Krep Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/30639-2022-04-16-07-19-37.jpeg', Fiyat: 189.90},
+{UrunKodu: '31302', UrunAdi : 'V Yaka Viskon Kumaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/30302-2022-04-09-06-19-39.jpeg', Fiyat: 99.90},
+{UrunKodu: '30621', UrunAdi : 'Leopar Parçalı Salaş Sandy Elbise 86 Sm', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/29621-2022-03-23-10-29-19.jpeg', Fiyat: 140.00},
+{UrunKodu: '29712', UrunAdi : 'Yarasa Kol Omuz Detay Şeritli Janes Viskon Kumaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/28712-2022-02-18-16-52-08.jpeg', Fiyat: 139.90},
+{UrunKodu: '29498', UrunAdi : 'Çiçek Baskılı Janes Sandy Kumaş Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/28498-2022-03-20-15-14-06.jpeg', Fiyat: 149.90},
+{UrunKodu: '29401', UrunAdi : 'Gabardin Kumaş Yüksek Bel Pantolon 94cm XLbel36cm', Kategori: 'Pantolon', Resim: 'https://www.modayakamoz.com/orj/828b2ff7a8527711818cd9c082e65610.jfif', Fiyat: 179.90},
+{UrunKodu: '32488', UrunAdi : 'Omuzlar Açık Boyun Askılı, Kollar Salaş File Detay Sandy Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/31488-2022-05-14-09-57-17.jpeg', Fiyat: 139.90},
+{UrunKodu: '32130', UrunAdi : 'Kruvaze Yaka Kuşak Ve Toka Detay Krep Midi Boy Elbise', Kategori: 'Elbise', Resim: 'https://www.modayakamoz.com/orj/31130-2022-04-27-06-02-11.jpeg', Fiyat: 199.90},
+{UrunKodu: '26647', UrunAdi : 'Leopar Kol Desenli V Yaka Bluz', Kategori: 'Bluz', Resim: 'https://www.modayakamoz.com/orj/25647-2021-10-19-08-52-59.jpeg', Fiyat: 109.90}]
+
+
+
+      // function alli(){
+      //   document.querySelector('.kategoris').innerHTML = ""
+      //   for (let i = 0; i < productsList.length; i++) {
+      //       let crtr = document.createElement("div");
+      //    crtr.setAttribute("class","col-md-6 col-sm-6 col-xs-6 col-lg-4 col-xl-3");
+      //    crtr.innerHTML = `<div class="card text-center" style="max-height: 560px; width: 18rem;"> <img src="` + productsList[i].Resim + `" class="card-img-top" max alt="..."><div class="card-body"><h5 class="card-title text-center">` + productsList[i].UrunAdi + `</h5><p class="card-text text-center">` + productsList[i].Fiyat + ` TL</p>
+      //   </div>
+      //  <a href="#" class=" btn btn-success">Sipariş ver!</a>
+      //  </div></div>`;
+      //  document.querySelector('.kategoris').appendChild(crtr);
+      //     }
+          
+      //   }
+
+      function trade () {
+
+
+        
+      }
+
+      function elbise(x){
+        document.querySelector('.kategoris').innerHTML = ""
+        for (let i = 0; i < productsList.length; i++) {
+          if(productsList[i].Kategori == x){
+            let crtr = document.createElement("div");
+         crtr.setAttribute("class","col-md-3 col-sm-6 col-xs-6 col-lg-3 col-xl-3 d-flex");
+         crtr.innerHTML = `<div class="card text-center" "> <img src="` + productsList[i].Resim + `" class="card-img-top" alt="..."><div class="card-body float-end flex-fill bottom-0"><h5 class="card-title text-center">` + productsList[i].UrunAdi + `</h5><p class="card-text text-center">` + productsList[i].Fiyat + ` TL</p>
+         
+       </div>
+       <a href="#" class=" btn btn-success">Sipariş ver!</a>
+       </div></div>
+       `;
+       document.querySelector('.kategoris').appendChild(crtr);
+          }
+          if (x=="all"){
+            let crtr = document.createElement("div");
+         crtr.setAttribute("class","col-md-3 col-sm-6 col-xs-6 col-lg-3 col-xl-3 d-flex");
+         crtr.innerHTML = `<div class="card text-center" "> <img src="` + productsList[i].Resim + `" class="card-img-top" alt="..."><div class="card-body float-end flex-fill bottom-0"><h5 class="card-title text-center">` + productsList[i].UrunAdi + `</h5><p class="card-text text-center">` + productsList[i].Fiyat + ` TL</p>
+         
+       </div>
+       <a href="https://wa.me/905525225723?text=` + productsList[i].Resim + `Merhaba%20`+productsList[i].UrunAdi+`%20ile%20ilgili%20bilgi%20almak%20istemiştim" class=" btn btn-success">Sipariş ver!</a>
+       </div></div>
+       `;
+       document.querySelector('.kategoris').appendChild(crtr);
+          }
+          }
+          
+        }
+        elbise("all");
+
+
+</script>
+
+
+
+            <footer class="site-footer">
+              <div class="container" >
+                <div class="row" >
+                  <div class="col-sm-12 col-md-6">
+                    <h6 class="cev26" >Hakkımızda</h6>
+                    <p class="text-justify cev27">ABD, Avrupa veya diğer 100'den fazla ülkede En Ucuz ve En Son Moda Kadın Giyim ürünlerini çevrimiçi toptan satış yapmak ister misiniz? İster bir butik mağaza, ister çevrimiçi perakendeci olun, klasikten modayı takip eden tarzlara, resmi işlerden gündelik tarzlara, Janes'de 50.000'den fazla benzersiz ve modaya uygun bayan giyim tarzı, toplu satın alma için ilk tercihiniz olacak! En iyi satıcı olarak, her mevsime veya duruma uygun en yeni şık kadın kıyafetlerini toptan satışa sunuyoruz. Yaza gelindiğinde kadın giyim pazarında en çok ne konuşuluyor? Seksi Mayo vazgeçilmezdir. Klasik Tek Parçalar veya Örtüler, Bikiniler, hatta Büyük Beden Mayoların tümü web sitelerimizde mevcuttur. Plaj Giysileri ve Mayoların tüm günlük güncellemeleri, trend stilleri, renkleri ve boyutları işletmenizi tatmin edecek. Çiçek Desenli Elbise veya Gömlek Elbise de yaz tutkusuna çok yakışıyor. Müşterinizin özel bir etkinliğe katılması gerekiyorsa, ona zarif bir Abiye veya şık bir Parti Elbisesi sunun. Bunun yanı sıra gündelik kadın giyimi de oldukça popülerdir. Hem Kabarık Kol Bayan Üstler, İş Butik Bluzlar, Baskı T-shirt, hem de Şeffaf Kumaş Bayan Spor Sütyen veya Şortlar, Janes'de en son stilleri toptan tek elden yapabilirsiniz.</p>
+                  </div>
+
+                  <div class="col-xs-6 col-md-3">
+                    <h6 class="cev28">Kategoriler</h6>
+                    <ul class="footer-links">
+                      <li><a href="/" class="cev29">Bluz</a></li>
+                      <li><a href="/" class="cev30">Pantalon</a></li>
+                      <li><a href="/" class="cev31">Elbise</a></li>
+                      <li><a href="/" class="cev32">Takım</a></li>
+
+                    </ul>
+                  </div>
+
+                  <div class="col-xs-6 col-md-3">
+                    <h6 class="cev33">Bağlantılar</h6>
+                    <ul class="footer-links">
+                      <li><a href="https://modayakamoz.net/">ModaYakamoz</a></li>
+                      <li><a href="https://www.viyamo.com/">Viyamo</a></li>
+                      <li><a href="https://www.modablask.com/">ModaBlask</a></li>
+
+                    </ul>
+                  </div>
+                </div>
+                <hr>
+              </div>
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <p class="copyright-text">Copyright &copy; 2022 All Rights Reserved by 
+                <a href="#">Janes</a>.
+                    </p>
+                  </div>
+
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                    <ul class="social-icons">
+                      <li><a class="facebook" href="https://www.facebook.com/janestoptan"><i class="fa fa-facebook"></i></a></li>
+                      <li><a class="twitter" href="https://www.instagram.com/janescollectionn/"><i class="fa fa-instagram"></i></a></li>
+                      <!-- <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
+                      <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>    -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <script type="text/javascript">
+                (function () {
+                    var options = {
+                        whatsapp: "905525225723",
+                        call_to_action: "Merhaba, nasıl yardımcı olabilirim?",
+                        position: "right",
+                    };
+                    var proto = document.location.protocol, host = "getbutton.io", url = proto + "//static." + host;
+                    var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = url + '/widget-send-button/js/init.js';
+                    s.onload = function () { WhWidgetSendButton.init(host, proto, options); };
+                    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore(s, x);
+                })();
+            </script>
+            </footer>
+
+    <script src="app.js"></script>
+  </body>
+  
+
+     
+</html>
