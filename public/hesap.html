@@ -25,15 +25,22 @@ padding-right: 15px;
 	color:#FFF;
 	border-radius:50px;
 	text-align:center;
-  font-size:30px;
+    font-size:30px;
 	box-shadow: 2px 2px 3px #999;
-  z-index:100;
+    z-index:100;
 }
+
+
+
+
+
 
     </style>
     <div class="container" >
       <div class="row">
         <div class="col-12 fixed-top" style="overflow: hidden ; background:white;">
+
+
 
             <h1 style="margin-top: 15px ; text-align: center">Harcamanızı Giriniz <span><button type="button" class="btn btn-success float" id="refresh" style="margin-left:2px;" ><i class="fa-solid fa-arrows-rotate"></i></button>
             </span></h1>
@@ -45,7 +52,19 @@ padding-right: 15px;
                     <input type="number" class="form-control" id="gir" placeholder="Tutar" aria-label="Amount (to the nearest dollar)">
 
                 </span>
-                <span class="input-group-text" style="width:12%">TL</span>
+                <span class="input-group-text" style="width:4%; text-align: center; padding: 2px; margin: 0px;" >₺</span>
+
+                <span style="width:14%;">
+                <select class="form-select form-select-md" id="gerek" aria-label=".form-select-sm example" >
+                    <option selected >Genel</option>
+                    <option >Mutfak</option>
+                    <option >Hobi</option>
+                    <option  >Ulaşım</option>
+                    <option >Bireysel</option>
+                    <option >Giyim</option>
+                    <option >Sağlık</option>
+                  </select>
+                </span>
 
                 <button type="button" class="btn btn-danger" style="margin-left:2px;" id="harcama">Harcama</button>
 
@@ -67,13 +86,18 @@ padding-right: 15px;
       <hr />
 
       <div class="row" style="margin-top: 52%;">
+       
+
+        
         <div class="col-12 mt-3" >
+            <div id="liveAlertPlaceholder"></div>
 
             <ul class="list-group list-group-numbered" id="liste">
 
             </ul>
         </div>
       </div>
+      
           
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
@@ -83,8 +107,11 @@ padding-right: 15px;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     -->
 </div>
-<div id="liveAlertPlaceholder"></div>
+
     <script type="module">
+
+
+
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
         // TODO: Add SDKs for Firebase products that you want to use
@@ -120,7 +147,24 @@ padding-right: 15px;
                             let aylik = document.querySelector("#aylik");
                             let totalg = 0;
                             let total = 0;
+                            let mutfak = 0;
+                            let hobi = 0;
+                            let ulasim = 0;
+                            let bireysel = 0;
+                            let genel = 0;
+                            let harli=[];
+
+
+
+
+
                             var tarih = new Date();
+                            let idx = tarih.toString().split(" ").join("");
+                            idx= idx.split(":").join("");
+                            idx= idx.split("(").join("");
+                            idx= idx.split(")").join("");
+                            idx= idx.split("+").join("");
+
                             function clearalert() {
                                 alertPlaceholder.innerHTML = "";
                             }
@@ -143,8 +187,8 @@ padding-right: 15px;
                 async function harcar() {
                     liste.innerHTML = "";
 
-
-                    var ref = doc(db, "harcama", tarih.toString());
+                    
+                    var ref = doc(db, "harcama", idx);
                     if(document.getElementById("tip").value == ""){
                         alerti("Açıklama girmeniz gerekir.","danger");
                         const myTimeout = setTimeout(clearalert, 5000);
@@ -161,9 +205,11 @@ padding-right: 15px;
                     
                     const docRef = await setDoc(
                         ref, {
+                            id: idx,
                             Tutar: document.getElementById("gir").value,
                             Tarih: tarih.toLocaleDateString(),
-                            Tip: document.getElementById("tip").value
+                            Tip: document.getElementById("tip").value,
+                            Gerek: document.getElementById('gerek').value
                         }
                     )
                     .then(() =>{
@@ -180,10 +226,6 @@ padding-right: 15px;
 
 
             }
-
-
-
-
 
 
 
@@ -223,78 +265,110 @@ padding-right: 15px;
                 })
             }
 
-            ///////////////////////////////////////////
-            async function DeleteDoc(){
-                var ref = doc(db, "TheStudentList", Rollbox.value);
+
+
+
+            async function DeleteDoc(id){
+                var ref = doc(db, "harcama", id);
 
                 const docSnap = await getDoc(ref);
 
                 if(!docSnap.exists()){
-                    alert("Böyle bir şey yok")
+                    alerti("Bir Hata Oluştu","danger");
+                        const myTimeout = setTimeout(clearalert, 5000)
                 }
-
+                else{
                 await deleteDoc(ref).then(()=>{
-                    alert("Silindi.")
+                    alerti("Silindi","success");
+                    const myTimeout = setTimeout(clearalert, 5000);
                 })
                 }
-               
-            // //////////////////////////////////////                
-            // Insbtn.addEventListener("click", AddDocument_CustomID)
-            // Selbtn.addEventListener("click", GetDocument)
-            // Upbtn.addEventListener("click",UpdateFieldsInDoc)
-            // Delbtn.addEventListener("click",DeleteDoc)
-            // list.addEventListener("click",listesi)
+            }
+
+            
 
 
 
-            const querySnapshot = await getDocs(collection(db,"harcama"));
 
-
-            function trigger(querySnapshot) {
-
-                
-               querySnapshot.forEach((doc) => {
-                let creator=document.createElement("li");
-                creator.setAttribute("class","list-group-item d-flex justify-content-between align-items-start");
-                creator.innerHTML= `<div class='ms-2 me-auto text-secondary' style='font-size:10px'> <div class='fw-bold text-dark'style='font-size:18px'>` + doc.data().Tip + `</div>
-                    ` + doc.data().Tarih + `</div>
-                    <span class='badge bg-success rounded-pill'>` + doc.data().Tutar + ` ₺</span>`;
+            
+            function trigger(qq) {
+               qq.forEach((doc) => {
+                harli.push({
+                    id: doc.id,
+                    Tutar: doc.data().Tutar,
+                    Tarih: doc.data().Tarih,
+                    Tip: doc.data().Tip,
+                    Gerek: doc.data().Gerek
+                })               
+                });             
+                } 
                     
-
-                liste.prepend(creator);
-
-                // liste.innerHtml += `<li class="list-group-item d-flex justify-content-between align-items-start">
-                //   <div class="ms-2 me-auto">
-                //     <div class="fw-bold">`+doc.data().Tip+`</div>
-                //     `+doc.data().Tarih+`</div>
-                //   <span class="badge bg-primary rounded-pill">`+doc.data().Tutar+`</span>
-                // </li>`;
+            const querySnapshot = await getDocs(collection(db,"harcama"));
+            trigger(querySnapshot)
 
 
-            console.log(doc.id, " => ", doc.data().Tutar);
-
-                guncelle(doc)
-            }); 
-            
-        } 
-            
 
 
-        trigger(querySnapshot)
 
-            function guncelle(doc) {
+            function fiyatekle(doc) {
                 total += parseInt(doc.data().Tutar)
 
 
                 if(doc.data().Tarih == tarih.toLocaleDateString()){
                     totalg += parseInt(doc.data().Tutar)
                 }
+
                 aylik.innerHTML = total + "<span>₺</span>";
                 gunluk.innerHTML = totalg + "<span>₺</span>";
+                }
+
+
+
+
+
+
+            function dokum() {
+                console.log(harli)
+                harli = harli.sort((a,b) => a.Tarih - b.Tarih);
+                console.log(harli)
+                harli.forEach((eleman) => {
+                let creator=document.createElement("li");
+                if(eleman.Tarih == tarih.toLocaleDateString()){creator.setAttribute("style","background-color: rgba(121, 230, 175, 0.158);")}
+                else{ }
+
+                let silbuton=document.createElement("button");
+                silbuton.setAttribute("class","btn btn-danger");
+                silbuton.setAttribute("onClick", eleman.id);
+
+
+                creator.setAttribute("class","list-group-item d-flex justify-content-between align-items-start position-relative");
+                creator.innerHTML= `<div class='ms-2 me-auto text-secondary' style='font-size:10px'> <div class='fw-bold text-dark' style='font-size:18px'>` + eleman.Tip + `</div>
+                    ` + eleman.Tarih + `</div> <button id=`+eleman.id+` class='hiyarto btn btn-danger btn-sm position-absolute top-50 start-50 translate-middle ms-5'>Sil</button><span class='badge bg-success position-absolute top-50 end-0 translate-start me-3 rounded-pill'>` + eleman.Tutar + ` ₺</span>`;
+                    if(eleman.Tarih == tarih.toLocaleDateString()){
+                        liste.prepend(creator);
+                    }
+                    else{liste.appendChild(creator);}
             }
+            )
+        }
 
 
 
+
+        dokum();
+
+            let hiyartolar = document.getElementsByClassName("hiyarto")
+            for(let i = 0; i < hiyartolar.length; i++){
+                hiyartolar[i].addEventListener("click",function(){
+                    let id = this.id;
+                    DeleteDoc(id).catch(()=>{
+                        location.reload()
+                });
+                })}
+            
+            
+            
+            // ;
 
 
 
