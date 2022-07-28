@@ -38,7 +38,7 @@ padding-right: 15px;
     </style>
     <div class="container" >
       <div class="row">
-        <div class="col-12 fixed-top" style="overflow: hidden ; background:white;">
+        <div class="col-12 fixed-top" style="overflow: hidden ; background:rgb(255, 255, 255);">
 
 
 
@@ -54,7 +54,7 @@ padding-right: 15px;
                 </span>
                 <span class="input-group-text" style="width:4%; text-align: center; padding: 2px; margin: 0px;" >₺</span>
 
-                <span style="width:14%;">
+                <span style="width:25%;">
                 <select class="form-select form-select-md" id="gerek" aria-label=".form-select-sm example" >
                     <option selected >Genel</option>
                     <option >Mutfak</option>
@@ -165,6 +165,26 @@ padding-right: 15px;
                             idx= idx.split(")").join("");
                             idx= idx.split("+").join("");
 
+
+                            let ay = tarih.getMonth()+100
+                            ay = ay.toString().slice(-2)
+                            let gun = tarih.getDay()+100
+                            gun = gun.toString().slice(-2)
+                            let saat = tarih.getHours()+100
+                            saat = saat.toString().slice(-2)
+                            let dakika = tarih.getMinutes()+100
+                            dakika = dakika.toString().slice(-2)
+                            let saniye = tarih.getSeconds()+100
+                            saniye = saniye.toString().slice(-2)
+                            let uniqueId = tarih.getFullYear().toString()+ay+gun+saat+dakika+saniye;
+                            uniqueId = parseInt(uniqueId);
+                            console.log(uniqueId);
+
+
+
+
+
+
                             function clearalert() {
                                 alertPlaceholder.innerHTML = "";
                             }
@@ -173,7 +193,7 @@ padding-right: 15px;
                         wrapper.innerHTML = [
                             `<div class="alert alert-${type} alert-dismissible" role="alert">`,
                             `   <div>${message}</div>`,
-                            '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+                            '   <button type="button" class="btn-close" data-bs-dismiss="alert" onClick="location.reload()" aria-label="Close"></button>',
                             '</div>'
                         ].join('')
 
@@ -188,7 +208,7 @@ padding-right: 15px;
                     liste.innerHTML = "";
 
                     
-                    var ref = doc(db, "harcama", idx);
+                    var ref = doc(db, "harcama", uniqueId.toString());
                     if(document.getElementById("tip").value == ""){
                         alerti("Açıklama girmeniz gerekir.","danger");
                         const myTimeout = setTimeout(clearalert, 5000);
@@ -205,7 +225,7 @@ padding-right: 15px;
                     
                     const docRef = await setDoc(
                         ref, {
-                            id: idx,
+                            id: uniqueId,
                             Tutar: document.getElementById("gir").value,
                             Tarih: tarih.toLocaleDateString(),
                             Tip: document.getElementById("tip").value,
@@ -226,7 +246,6 @@ padding-right: 15px;
 
 
             }
-
 
 
 
@@ -299,9 +318,17 @@ padding-right: 15px;
                     Tarih: doc.data().Tarih,
                     Tip: doc.data().Tip,
                     Gerek: doc.data().Gerek
+                    
                 })               
-                });             
+                fiyatekle(doc)
+            });             
                 } 
+
+
+
+                
+                
+            // console.log(await getDocs(collection(db,"sayac")).then((a)=>{a.forEach((a)=>{a.data().IDS})}))
                     
             const querySnapshot = await getDocs(collection(db,"harcama"));
             trigger(querySnapshot)
@@ -329,13 +356,12 @@ padding-right: 15px;
 
             function dokum() {
                 console.log(harli)
-                harli = harli.sort((a,b) => a.Tarih - b.Tarih);
+                harli = harli.sort((a,b) => a.id - b.id);
                 console.log(harli)
                 harli.forEach((eleman) => {
                 let creator=document.createElement("li");
                 if(eleman.Tarih == tarih.toLocaleDateString()){creator.setAttribute("style","background-color: rgba(121, 230, 175, 0.158);")}
                 else{ }
-
                 let silbuton=document.createElement("button");
                 silbuton.setAttribute("class","btn btn-danger");
                 silbuton.setAttribute("onClick", eleman.id);
@@ -345,7 +371,7 @@ padding-right: 15px;
                 creator.innerHTML= `<div class='ms-2 me-auto text-secondary' style='font-size:10px'> <div class='fw-bold text-dark' style='font-size:18px'>` + eleman.Tip + `</div>
                     ` + eleman.Tarih + `</div> <button id=`+eleman.id+` class='hiyarto btn btn-danger btn-sm position-absolute top-50 start-50 translate-middle ms-5'>Sil</button><span class='badge bg-success position-absolute top-50 end-0 translate-start me-3 rounded-pill'>` + eleman.Tutar + ` ₺</span>`;
                     if(eleman.Tarih == tarih.toLocaleDateString()){
-                        liste.prepend(creator);
+                        liste.prepend   (creator);
                     }
                     else{liste.appendChild(creator);}
             }
