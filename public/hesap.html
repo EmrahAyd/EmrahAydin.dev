@@ -29,6 +29,23 @@ padding-right: 15px;
 	box-shadow: 2px 2px 3px #999;
     z-index:100;
 }
+.modal-pop{ 
+    width: 95%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+    background: white;
+    position: fixed;
+z-index: 999;
+border-radius: 25px;
+border: rgba(153, 153, 153, 0.589) 1px solid;}
+.tons{
+    text-align: right;
+    border-radius: 25px;
+    color: #ff3131b7;
+}
 
 
 
@@ -368,8 +385,15 @@ padding-right: 15px;
 
 
                 creator.setAttribute("class","list-group-item d-flex justify-content-between align-items-start position-relative");
-                creator.innerHTML= `<div class='ms-2 me-auto text-secondary' style='font-size:10px'> <div class='fw-bold text-dark' style='font-size:18px'>` + eleman.Tip + `</div>
-                    ` + eleman.Tarih + `</div> <button id=`+eleman.id+` class='hiyarto btn btn-danger btn-sm position-absolute top-50 start-50 translate-middle ms-5'>Sil</button><span class='badge bg-success position-absolute top-50 end-0 translate-start me-3 rounded-pill'>` + eleman.Tutar + ` ₺</span>`;
+                creator.innerHTML= `
+                <div class="modal-pop" style="display:none; "> <p class="fw-bold text-dark" style="">Silmek istediğinize emin misiniz? </p> <br> <br>
+                <div class="tons">
+                <Button style="background-color:#77bfe9b7;border: 0ch; margin-right:8px; padding:15px; border-radius: 10px; font-weight:bold;" class="uniqeclass" id=`+eleman.id+`>Evet</Button> <button onclick="document.querySelector('.modal-pop').setAttribute('style','display:none;');" style=" font-weight:bold;background-color:#ff3131b7;border: 0ch; border-radius: 10px; padding:15px;" >Hayır</button>
+                </div>
+                </div>
+
+                <div class='ms-2 me-auto text-secondary' > <div class='fw-bold text-dark' style='font-weight:bold;'>` + eleman.Tip + `</div>
+                    ` + eleman.Tarih + `</div> <button class='hiyarto btn btn-danger btn-sm position-absolute top-50 start-50 translate-middle ms-5'>Sil</button><span class='badge bg-success position-absolute top-50 end-0 translate-start me-3 rounded-pill'>` + eleman.Tutar + ` ₺</span>`;
                     if(eleman.Tarih == tarih.toLocaleDateString()){
                         liste.prepend   (creator);
                     }
@@ -381,15 +405,22 @@ padding-right: 15px;
 
 
 
-        dokum();
 
+        dokum();
+            let uniqeclass = document.getElementsByClassName("uniqeclass")
+            for(let i = 0; i < uniqeclass.length; i++){
+                uniqeclass[i].addEventListener("click",function(){
+                    let id = this.id;
+                    DeleteDoc(id).then(()=>{
+                        window.location.reload();
+                });
+                })}
             let hiyartolar = document.getElementsByClassName("hiyarto")
             for(let i = 0; i < hiyartolar.length; i++){
                 hiyartolar[i].addEventListener("click",function(){
                     let id = this.id;
-                    DeleteDoc(id).catch(()=>{
-                        location.reload()
-                });
+                    document.querySelector('.modal-pop').setAttribute('style','display:block;');
+
                 })}
             
             
@@ -401,3 +432,6 @@ padding-right: 15px;
       </script>
   </body>
 </html>
+
+
+  
