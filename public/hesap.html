@@ -161,7 +161,8 @@ input:checked + .switch:after {
                 </div>
 
                 <div class="col-4">
-                    <h1>Emrah</h1>
+                    <h1 style="margin-bottom:0px;">Emrah</h1>
+                    <h8 style="display:inline-flex; margin-top: 1px; color: rgba(94, 123, 253, 0.425);">Credit: <span id="eo" style="color: rgba(119, 119, 119, 0.74); font-weight:bold;"></span></h8>
                 </div>
                 </div>
 
@@ -241,8 +242,8 @@ input:checked + .switch:after {
                             let bireysel = 0;
                             let genel = 0;
                             let harli=[];
+                            let bakiye = 1950;
                             
-
 
 
 
@@ -294,6 +295,15 @@ input:checked + .switch:after {
 
                 let harcamaGun = tarih.getTime()
                 harcamaGun = harcamaGun.toString()
+
+
+                function bak(){
+                        var ref = doc(db, "sayac", "LCr3FKACNRk0r94pmFtp");
+
+                }
+
+
+
                 async function harcar() {
                     liste.innerHTML = "";
 
@@ -390,10 +400,6 @@ input:checked + .switch:after {
                 }
             }
 
-            
-
-
-
 
             
             function trigger(qq) {
@@ -411,11 +417,6 @@ input:checked + .switch:after {
             });             
                 } 
 
-
-
-                
-                
-            // console.log(await getDocs(collection(db,"sayac")).then((a)=>{a.forEach((a)=>{a.data().IDS})}))
                     
             const querySnapshot = await getDocs(collection(db,"harcama"));
             trigger(querySnapshot)
@@ -459,8 +460,12 @@ input:checked + .switch:after {
 
                 else(silbuton.setAttribute("class","btn btn-alert")
 )
-
-
+                if(eleman.id>20220704003431 && eleman.gender === false){
+                    bakiye-=parseInt(eleman.Tutar)
+                    console.log(bakiye)
+                    document.querySelector("#eo").innerHTML = bakiye;
+                }
+                else{}
                 creator.setAttribute("class","list-group-item d-flex justify-content-between align-items-start position-relative");
                 creator.innerHTML= `
                 <div class="modal-pop" id='`+'p'+'p'+eleman.id +`' style="display:none; "> <p class="fw-bold text-dark" style="">Silmek istediğinize emin misiniz? </p> <br> <br>
