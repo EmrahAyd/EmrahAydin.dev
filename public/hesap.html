@@ -237,7 +237,7 @@ input:checked + .switch:after {
                             let totalg = 0;
                             let total = 0;
                             let harli=[];
-                            let bakiye = 1950;
+                            let bakiye = 12400;
                             
 
 
@@ -421,8 +421,30 @@ input:checked + .switch:after {
 
 
             function fiyatekle(doc) {
-                total += parseInt(doc.data().Tutar)
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                if(doc.data().id > 20220820091312 ){
+                  console.log(doc.data().id)
+                    total += parseInt(doc.data().Tutar)
+                }
 
                 if(doc.data().Tarih == tarih.toLocaleDateString()){
                     totalg += parseInt(doc.data().Tutar)
@@ -438,26 +460,28 @@ input:checked + .switch:after {
 
 
             function dokum() {
-                console.log(harli)
                 harli = harli.sort((a,b) => a.id - b.id);
                 console.log(harli)
                 harli.forEach((eleman) => {
                 let creator=document.createElement("li");
-                if(eleman.Tarih == tarih.toLocaleDateString()){creator.setAttribute("style","background-color: rgba(121, 230, 175, 0.158);")}
-                else{ }  
+
                 let silbuton=document.createElement("button");
 
 
                 if(eleman.gender === true){
-                    creator.setAttribute("style","background-color: rgba(21, 30, 175, 0.158);")
+                    creator.setAttribute("style","background-color: rgba(66, 73, 179, 0.082);")
                 }
 
+                if(eleman.gender === false){
+                    creator.setAttribute("style","background: #7ef1ae0e;")
+                }
+                if(eleman.Tarih == tarih.toLocaleDateString())
+                {creator.setAttribute("style","background-color: rgba(121, 230, 175, 0.158);")}
 
                 else(silbuton.setAttribute("class","btn btn-alert")
 )
-                if(eleman.id>20220704003431 && eleman.gender === false){
+                if(eleman.id>20220820091312 && eleman.gender === false){
                     bakiye-=parseInt(eleman.Tutar)
-                    console.log(bakiye)
                     document.querySelector("#eo").innerHTML = bakiye;
                 }
                 else{}
@@ -593,7 +617,7 @@ input:checked + .switch:after {
         let saglık = 0;
         
         harli.forEach((e)=>{
-            if(e.Gerek=="Ulaşım"){ulasim+=parseInt(e.Tutar); console.log("ulaşım"+ulasim)}
+            if(e.Gerek=="Ulaşım"){ulasim+=parseInt(e.Tutar)}
             else if (e.Gerek=="Mutfak"){mutfak+=parseInt(e.Tutar)}
             else if (e.Gerek=="Hobi"){hobi+=parseInt(e.Tutar)}
             else if (e.Gerek=="Giyim"){giyim+=parseInt(e.Tutar)}
